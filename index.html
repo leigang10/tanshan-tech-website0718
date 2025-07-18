@@ -267,5 +267,24 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        // 内联测试代码
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('内联脚本加载');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            if (toggle) {
+                console.log('找到汉堡菜单元素');
+                toggle.onclick = function() {
+                    console.log('内联点击事件触发');
+                    const menu = document.querySelector('.nav-menu');
+                    if (menu) {
+                        menu.classList.toggle('active');
+                        this.classList.toggle('active');
+                        console.log('菜单切换完成');
+                    }
+                };
+            }
+        });
+    </script>
 </body>
 </html> 

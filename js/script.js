@@ -3,11 +3,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     
+    console.log('DOM加载完成');
+    console.log('mobileMenuToggle:', mobileMenuToggle);
+    console.log('navMenu:', navMenu);
+    
     if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
+        console.log('元素找到，添加事件监听器');
+        mobileMenuToggle.addEventListener('click', function(e) {
+            console.log('汉堡菜单被点击');
+            e.preventDefault();
+            e.stopPropagation();
             navMenu.classList.toggle('active');
             mobileMenuToggle.classList.toggle('active');
+            console.log('菜单状态:', navMenu.classList.contains('active'));
         });
+        
+        // 添加触摸事件支持
+        mobileMenuToggle.addEventListener('touchstart', function(e) {
+            console.log('汉堡菜单被触摸');
+            e.preventDefault();
+            navMenu.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            console.log('菜单状态:', navMenu.classList.contains('active'));
+        });
+    } else {
+        console.log('元素未找到');
     }
     
     // 点击导航链接后关闭移动端菜单
