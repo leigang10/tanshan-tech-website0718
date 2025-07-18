@@ -110,7 +110,9 @@ picture img {
 /* 首页样式 */
 .hero-section {
     position: relative;
-    height: 100vh;
+    height: 50vw; /* 使用视口宽度的50%来保持2:1比例 */
+    min-height: 400px; /* 最小高度确保在小屏幕上也有合适的显示 */
+    max-height: 600px; /* 最大高度避免在大屏幕上过高 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,6 +189,8 @@ picture img {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card:hover {
@@ -196,8 +200,9 @@ picture img {
 
 .service-image {
     width: 100%;
-    height: 200px;
+    height: 150px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .service-card h3 {
@@ -205,6 +210,14 @@ picture img {
     text-align: center;
     font-size: 1.3rem;
     color: #333;
+    font-weight: bold;
+    margin: 0;
+    display: block;
+    background: white;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 案例展示 */
@@ -242,8 +255,14 @@ picture img {
     background: #f8f9fa;
 }
 
-.partners-background {
+.partners-backgrounds {
     margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.partners-background-item {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -251,15 +270,17 @@ picture img {
 
 .partners-image {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: 200px; /* 调整为3:1比例，减少空白 */
+    object-fit: contain;
+    background-color: #f8f9fa;
 }
 
 .certifications-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    justify-content: center;
     gap: 30px;
     margin-top: 50px;
+    flex-wrap: wrap;
 }
 
 .certification-card {
@@ -268,6 +289,7 @@ picture img {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    flex: 0 0 auto;
 }
 
 .certification-card:hover {
@@ -275,14 +297,17 @@ picture img {
 }
 
 .certification-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 200px; /* 桌面端设定高度 */
+    width: 535px; /* 8:3比例，200 * 8/3 = 535px */
+    object-fit: contain;
+    background-color: #f8f9fa;
 }
 
 /* 联系我们 */
 .contact-section {
     padding: 80px 0;
+    background: #4169E1; /* 深蓝色背景 */
+    color: white;
 }
 
 .contact-info {
@@ -298,12 +323,12 @@ picture img {
 .company-intro h3 {
     font-size: 2rem;
     margin-bottom: 15px;
-    color: #333;
+    color: white;
 }
 
 .company-intro p {
     font-size: 1.1rem;
-    color: #666;
+    color: white;
 }
 
 .contact-details {
@@ -314,21 +339,26 @@ picture img {
 
 .contact-item {
     padding: 20px;
-    background: #f8f9fa;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .contact-label {
     font-weight: bold;
-    color: #333;
+    color: white;
     display: block;
     margin-bottom: 5px;
 }
 
 .contact-value {
-    color: #007bff;
+    color: white;
     font-size: 1.1rem;
+}
+
+.contact-section .section-title {
+    color: white;
 }
 
 /* 页脚 */
@@ -406,6 +436,20 @@ picture img {
     line-height: 1.8;
     color: #333;
     margin: 0;
+}
+
+.advantages-image-container {
+    max-width: 800px;
+    margin: 40px auto 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.advantages-image {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* 团队介绍 */
@@ -557,8 +601,8 @@ picture img {
     }
     
     .certifications-grid {
-        grid-template-columns: 1fr;
         gap: 20px;
+        justify-content: center;
     }
     
     .contact-details {
@@ -579,7 +623,9 @@ picture img {
     }
     
     .hero-section {
-        height: 70vh;
+        height: 50vw; /* 保持2:1比例 */
+        min-height: 300px; /* 移动端最小高度 */
+        max-height: 400px; /* 移动端最大高度 */
     }
     
     .about-hero-section {
@@ -597,14 +643,34 @@ picture img {
         padding: 60px 0;
     }
     
-    .service-image,
-    .case-image,
+    .service-image {
+        height: 300px;
+    }
+    
+    .service-card h3 {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+    
+    .case-image {
+        height: 400px; /* 适配3:4比例，假设宽度约300px */
+    }
+    
     .certification-image {
-        height: 180px;
+        height: 150px; /* 移动端设定高度 */
+        width: 400px; /* 8:3比例，150 * 8/3 = 400px */
+        object-fit: contain;
+        background-color: #f8f9fa;
+    }
+    
+    .partners-backgrounds {
+        gap: 20px;
     }
     
     .partners-image {
-        height: 200px;
+        height: 120px; /* 移动端保持5:1比例，避免上下空白 */
+        object-fit: contain;
+        background-color: #f8f9fa;
     }
     
     .advantages-content,
@@ -616,6 +682,10 @@ picture img {
     .advantages-content p,
     .team-content p {
         font-size: 1rem;
+    }
+    
+    .advantages-image-container {
+        margin: 30px 15px 0;
     }
 }
 
