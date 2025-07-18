@@ -30,7 +30,7 @@
                 <li><a href="index.html" class="nav-link active">首页</a></li>
                 <li><a href="about.html" class="nav-link">关于我们</a></li>
             </ul>
-            <div class="mobile-menu-toggle">
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -268,21 +268,46 @@
 
     <script src="js/script.js"></script>
     <script>
-        // 内联测试代码
+        // 简化的移动端菜单代码
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('内联脚本加载');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            if (toggle) {
-                console.log('找到汉堡菜单元素');
-                toggle.onclick = function() {
-                    console.log('内联点击事件触发');
-                    const menu = document.querySelector('.nav-menu');
-                    if (menu) {
+            const toggle = document.getElementById('mobileMenuToggle');
+            const menu = document.querySelector('.nav-menu');
+            
+            if (toggle && menu) {
+                // 使用多种事件类型确保兼容性
+                ['click', 'touchstart', 'touchend'].forEach(eventType => {
+                    toggle.addEventListener(eventType, function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
                         menu.classList.toggle('active');
                         this.classList.toggle('active');
-                        console.log('菜单切换完成');
+                        
+                        // 添加视觉反馈
+                        this.style.transform = menu.classList.contains('active') ? 'scale(0.9)' : 'scale(1)';
+                        
+                        return false;
+                    });
+                });
+                
+                // 点击菜单项关闭菜单
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menu.classList.remove('active');
+                        toggle.classList.remove('active');
+                        toggle.style.transform = 'scale(1)';
+                    });
+                });
+                
+                // 点击页面其他区域关闭菜单
+                document.addEventListener('click', function(e) {
+                    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+                        menu.classList.remove('active');
+                        toggle.classList.remove('active');
+                        toggle.style.transform = 'scale(1)';
                     }
-                };
+                });
             }
         });
     </script>
