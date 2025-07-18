@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航菜单测试</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .test-info {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            font-size: 12px;
+            z-index: 9999;
+            font-family: monospace;
+        }
+        
+        .test-log {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.9);
+            color: #00ff00;
+            padding: 10px;
+            font-size: 11px;
+            z-index: 9999;
+            font-family: monospace;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        测试模式 - 点击右上角汉堡菜单测试导航功能
+    </div>
+    
+    <div class="test-log" id="testLog">
+        测试日志...
+    </div>
+
+    <!-- 顶部导航 -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="探山科技Logo" class="logo-img" loading="eager">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">首页</a></li>
+                <li><a href="about.html" class="nav-link">关于我们</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main style="margin-top: 100px; padding: 20px;">
+        <h1>导航菜单测试页面</h1>
+        <p>请点击右上角的汉堡菜单（三条横线）来测试导航功能。</p>
+        <p>如果菜单能正常展开和收起，说明修复成功。</p>
+    </main>
+
+    <script>
+        function log(message) {
+            const logElement = document.getElementById('testLog');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.textContent += `[${timestamp}] ${message}\n`;
+            logElement.scrollTop = logElement.scrollHeight;
+            console.log(message);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            log('页面加载完成');
+            
+            const toggle = document.getElementById('mobileMenuToggle');
+            const menu = document.querySelector('.nav-menu');
+            
+            log(`找到汉堡菜单: ${!!toggle}`);
+            log(`找到导航菜单: ${!!menu}`);
+            
+            if (toggle && menu) {
+                log('开始添加事件监听器');
+                
+                // 使用多种事件类型
+                ['click', 'touchstart', 'touchend'].forEach(eventType => {
+                    toggle.addEventListener(eventType, function(e) {
+                        log(`汉堡菜单被${eventType}`);
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const wasActive = menu.classList.contains('active');
+                        menu.classList.toggle('active');
+                        this.classList.toggle('active');
+                        
+                        const isActive = menu.classList.contains('active');
+                        log(`菜单状态: ${wasActive ? '收起' : '展开'} -> ${isActive ? '展开' : '收起'}`);
+                        
+                        // 添加视觉反馈
+                        this.style.transform = isActive ? 'scale(0.9)' : 'scale(1)';
+                        
+                        return false;
+                    });
+                });
+                
+                // 点击菜单项关闭菜单
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach((link, index) => {
+                    link.addEventListener('click', function(e) {
+                        log(`菜单项${index + 1}被点击: ${this.textContent}`);
+                        menu.classList.remove('active');
+                        toggle.classList.remove('active');
+                        toggle.style.transform = 'scale(1)';
+                    });
+                });
+                
+                // 点击页面其他区域关闭菜单
+                document.addEventListener('click', function(e) {
+                    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+                        if (menu.classList.contains('active')) {
+                            log('点击页面其他区域，关闭菜单');
+                            menu.classList.remove('active');
+                            toggle.classList.remove('active');
+                            toggle.style.transform = 'scale(1)';
+                        }
+                    }
+                });
+                
+                log('事件监听器添加完成');
+            } else {
+                log('错误：未找到必要的元素');
+            }
+        });
+        
+        // 监听菜单状态变化
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const isActive = mutation.target.classList.contains('active');
+                    log(`菜单class变化: ${isActive ? 'active' : 'inactive'}`);
+                }
+            });
+        });
+        
+        // 观察菜单元素
+        const menu = document.querySelector('.nav-menu');
+        if (menu) {
+            observer.observe(menu, { attributes: true });
+        }
+    </script>
+</body>
+</html> 
