@@ -13,10 +13,18 @@
     <!-- 预加载关键图片 -->
     <link rel="preload" as="image" href="images/logo.png">
     <link rel="preload" as="image" href="images/hero-bg.jpg">
+    <link rel="preload" as="image" href="images/hero-bg-mobile.jpg" media="(max-width: 768px)">
+    <!-- 预加载服务区域图片 -->
+    <link rel="preload" as="image" href="images/service-1.jpg">
+    <link rel="preload" as="image" href="images/service-2.jpg">
+    <link rel="preload" as="image" href="images/service-3.jpg">
     
-    <!-- 预连接关键域名（如果使用CDN） -->
+    <!-- 预连接关键域名 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <!-- 预连接到自己的域名，加速图片加载 -->
+    <link rel="preconnect" href="https://tanshan.com.cn">
+    <link rel="dns-prefetch" href="https://tanshan.com.cn">
 </head>
 <body>
     <!-- 顶部导航 -->
@@ -68,11 +76,10 @@
                             <!-- 移动端图片 600×600 -->
                             <source media="(max-width: 768px)" srcset="images/service-1-mobile.jpg">
                             <!-- 桌面端图片 600×300 -->
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5YWFhYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+WKoOi9veWksei0pTwvdGV4dD48L3N2Zz4=" 
-                                 data-src="images/service-1.jpg" 
+                            <img src="images/service-1.jpg" 
                                  alt="数据质量评估" 
-                                 class="service-image lazy-image"
-                                 loading="lazy">
+                                 class="service-image"
+                                 loading="eager">
                         </picture>
                         <h3>数据质量评估</h3>
                     </div>
@@ -82,11 +89,10 @@
                             <!-- 移动端图片 600×600 -->
                             <source media="(max-width: 768px)" srcset="images/service-2-mobile.jpg">
                             <!-- 桌面端图片 600×300 -->
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5YWFhYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+WKoOi9veWksei0pTwvdGV4dD48L3N2Zz4=" 
-                                 data-src="images/service-2.jpg" 
+                            <img src="images/service-2.jpg" 
                                  alt="数据产品供给" 
-                                 class="service-image lazy-image"
-                                 loading="lazy">
+                                 class="service-image"
+                                 loading="eager">
                         </picture>
                         <h3>数据产品供给</h3>
                     </div>
@@ -96,11 +102,10 @@
                             <!-- 移动端图片 600×600 -->
                             <source media="(max-width: 768px)" srcset="images/service-3-mobile.jpg">
                             <!-- 桌面端图片 600×300 -->
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5YWFhYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+WKoOi9veWksei0pTwvdGV4dD48L3N2Zz4=" 
-                                 data-src="images/service-3.jpg" 
+                            <img src="images/service-3.jpg" 
                                  alt="数据交易经纪服务" 
-                                 class="service-image lazy-image"
-                                 loading="lazy">
+                                 class="service-image"
+                                 loading="eager">
                         </picture>
                         <h3>数据交易经纪服务</h3>
                     </div>

@@ -64,15 +64,36 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// 网络感知和性能优化
+class PerformanceOptimizer {
+    constructor() {
+        this.connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        this.isSlowConnection = this.detectSlowConnection();
+    }
+    
+    detectSlowConnection() {
+        if (!this.connection) return false;
+        return this.connection.effectiveType === 'slow-2g' || 
+               this.connection.effectiveType === '2g' ||
+               this.connection.saveData;
+    }
+    
+    shouldLoadHighQuality() {
+        return !this.isSlowConnection;
+    }
+}
+
 // 懒加载功能
 class LazyLoader {
     constructor() {
         this.images = document.querySelectorAll('.lazy-image');
+        this.performanceOptimizer = new PerformanceOptimizer();
         this.options = {
             root: null,
-            rootMargin: '50px',
+            rootMargin: '200px', // 增加预加载距离
             threshold: 0.1
         };
+        this.loadedImages = new Set(); // 跟踪已加载的图片
         this.init();
     }
     
