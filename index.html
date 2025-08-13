@@ -5,19 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="北京探山科技有限公司 - 数据技术及应用与数据资产化领域的创新者，提供数据质量评估、数据产品供给、数据交易经纪服务">
     <title>北京探山科技有限公司 - 数据资产化服务专家</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- 关键CSS内联 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+    </style>
+    <!-- 非关键CSS延迟加载 -->
+    <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/style.css"></noscript>
     <!-- SEO优化 -->
     <meta name="keywords" content="数据资产化,数据质量评估,数据产品供给,数据交易经纪,探山科技">
     <meta name="author" content="北京探山科技有限公司">
     
-    <!-- 预加载关键图片 -->
+    <!-- 只预加载最关键的图片 -->
     <link rel="preload" as="image" href="images/logo.png">
     <link rel="preload" as="image" href="images/hero-bg.jpg">
     <link rel="preload" as="image" href="images/hero-bg-mobile.jpg" media="(max-width: 768px)">
-    <!-- 预加载服务区域图片 -->
-    <link rel="preload" as="image" href="images/service-1.jpg">
-    <link rel="preload" as="image" href="images/service-2.jpg">
-    <link rel="preload" as="image" href="images/service-3.jpg">
     
     <!-- 预连接关键域名 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,10 +144,11 @@
                             <!-- 移动端图片 600×600 -->
                             <source media="(max-width: 768px)" srcset="images/service-1-mobile.jpg">
                             <!-- 桌面端图片 600×300 -->
-                            <img src="images/service-1.jpg" 
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5YWFhYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+WKoOi9veWksei0pTwvdGV4dD48L3N2Zz4=" 
+                                 data-src="images/service-1.jpg" 
                                  alt="数据质量评估" 
-                                 class="service-image"
-                                 loading="eager">
+                                 class="service-image lazy-image"
+                                 loading="lazy">
                         </picture>
                         <h3>数据质量评估</h3>
                     </div>
@@ -89,10 +158,11 @@
                             <!-- 移动端图片 600×600 -->
                             <source media="(max-width: 768px)" srcset="images/service-2-mobile.jpg">
                             <!-- 桌面端图片 600×300 -->
-                            <img src="images/service-2.jpg" 
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5YWFhYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+WKoOi9veWksei0pTwvdGV4dD48L3N2Zz4=" 
+                                 data-src="images/service-2.jpg" 
                                  alt="数据产品供给" 
-                                 class="service-image"
-                                 loading="eager">
+                                 class="service-image lazy-image"
+                                 loading="lazy">
                         </picture>
                         <h3>数据产品供给</h3>
                     </div>
@@ -102,10 +172,11 @@
                             <!-- 移动端图片 600×600 -->
                             <source media="(max-width: 768px)" srcset="images/service-3-mobile.jpg">
                             <!-- 桌面端图片 600×300 -->
-                            <img src="images/service-3.jpg" 
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5YWFhYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+WKoOi9veWksei0pTwvdGV4dD48L3N2Zz4=" 
+                                 data-src="images/service-3.jpg" 
                                  alt="数据交易经纪服务" 
-                                 class="service-image"
-                                 loading="eager">
+                                 class="service-image lazy-image"
+                                 loading="lazy">
                         </picture>
                         <h3>数据交易经纪服务</h3>
                     </div>
@@ -271,7 +342,7 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
     <script>
         // 简化的移动端菜单代码
         document.addEventListener('DOMContentLoaded', function() {
